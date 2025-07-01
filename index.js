@@ -1,4 +1,4 @@
-// /MyLightweightStyler/index.js
+// /VoidDriftTheme/index.js
 /*
 ================================================================================
  Light Weight Styler v20
@@ -28,7 +28,7 @@ jQuery(function () {
     const CONSTANTS = {
         MODULE_NAME: 'VoidDrift',
         PATHS: {
-            SETTINGS_HTML: 'scripts/extensions/third-party/SillyTavern-VoidDriftThemesettings.html',
+            SETTINGS_HTML: 'scripts/extensions/third-party/SillyTavern-VoidDriftTheme/settings.html',
             STYLESHEET: 'scripts/extensions/third-party/SillyTavern-VoidDriftTheme/style.css',
             GALLERY_MANAGER: 'scripts/extensions/third-party/SillyTavern-VoidDriftTheme/gallery-manager.js',
         },

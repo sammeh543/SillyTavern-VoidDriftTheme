@@ -1,14 +1,14 @@
-<!-- LightStyler Extension Settings Drawer v20 -->
+<!-- VoidDrift Extension Settings Drawer v20 -->
 <div class="example-extension-settings">
     <div class="inline-drawer">
         <div class="inline-drawer-toggle inline-drawer-header">
-            <b>LightStyler</b>
+            <b>VoidDrift</b>
             <div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div>
         </div>
         <div class="inline-drawer-content">
             <div class="example-extension_block flex-container" style="justify-content: space-between;">
-                <label for="lightstyler_whisper_light">Whisper Light Theme</label>
-                <input id="lightstyler_whisper_light" type="checkbox" />
+                <label for="voiddrift_whisper_light">Whisper Light Theme</label>
+                <input id="voiddrift_whisper_light" type="checkbox" />
             </div>
             
             <!-- Avatar Size Section - Quick Setting -->
@@ -16,62 +16,62 @@
                 <label>Avatar Size Mode:</label>
                 <div class="flex-container" style="gap: 15px;">
                     <label style="display: flex; align-items: center; gap: 5px;">
-                        <input type="radio" id="lightstyler_large_avatar_mode" name="avatar_mode" value="large" checked>
+                        <input type="radio" id="voiddrift_large_avatar_mode" name="avatar_mode" value="large" checked>
                         Large
                     </label>
                     <label style="display: flex; align-items: center; gap: 5px;">
-                        <input type="radio" id="lightstyler_small_avatar_mode" name="avatar_mode" value="small">
+                        <input type="radio" id="voiddrift_small_avatar_mode" name="avatar_mode" value="small">
                         Small
                     </label>
                 </div>
             </div>
             
             <hr class="sysHR" />
-            <div id="lightstyler_theme_settings">
+            <div id="voiddrift_theme_settings">
                 
-                <div id="lightstyler_custom_inputs" style="margin-top: 15px;">
+                <div id="voiddrift_custom_inputs" style="margin-top: 15px;">
                     <!-- Character Alternative Images Section - Collapsible -->
                     <div class="example-extension_block">
-                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('lightstyler_images_section').style.display = document.getElementById('lightstyler_images_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('lightstyler_images_chevron').classList.toggle('fa-chevron-down'); document.getElementById('lightstyler_images_chevron').classList.toggle('fa-chevron-right');">
+                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('voiddrift_images_section').style.display = document.getElementById('voiddrift_images_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('voiddrift_images_chevron').classList.toggle('fa-chevron-down'); document.getElementById('voiddrift_images_chevron').classList.toggle('fa-chevron-right');">
                             <h4 style="margin: 0; font-size: 0.9em; color: var(--SmartThemeBodyColor);">
-                                <i id="lightstyler_images_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
+                                <i id="voiddrift_images_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
                                 Character Banner Alternative Images
                             </h4>
                         </div>
-                        <div id="lightstyler_images_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
+                        <div id="voiddrift_images_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
                             <small style="opacity: 0.8; margin-bottom: 15px; display: block; line-height: 1.4;">
                                 Select any character and choose an alternative image from their gallery folder. 
                                 Images must be uploaded via SillyTavern's Gallery extension first. Image folders are character-specific.
                             </small>
                             <div class="flex-container" style="gap: 10px; margin-bottom: 10px;">
-                                <select id="lightstyler_character_select" class="text_pole flex1">
+                                <select id="voiddrift_character_select" class="text_pole flex1">
                                     <option value="">Select a character...</option>
                                 </select>
-                                <button id="lightstyler_refresh_characters" class="menu_button" title="Refresh character list and auto-select current character">
+                                <button id="voiddrift_refresh_characters" class="menu_button" title="Refresh character list and auto-select current character">
                                     <i class="fa-solid fa-refresh"></i>
                                 </button>
                             </div>
-                            <div id="lightstyler_image_selection" style="display: none;">
+                            <div id="voiddrift_image_selection" style="display: none;">
                                 <div class="flex-container" style="gap: 10px; margin-bottom: 10px;">
-                                    <select id="lightstyler_image_select" class="text_pole flex1">
+                                    <select id="voiddrift_image_select" class="text_pole flex1">
                                         <option value="">Use default avatar</option>
                                     </select>
-                                    <button id="lightstyler_preview_image" class="menu_button" title="Preview selected image">
+                                    <button id="voiddrift_preview_image" class="menu_button" title="Preview selected image">
                                         <i class="fa-solid fa-eye"></i>
                                     </button>
                                 </div>
                                 <div class="flex-container" style="gap: 10px;">
-                                    <button id="lightstyler_apply_image" class="menu_button menu_button_icon" style="flex: 1;">
+                                    <button id="voiddrift_apply_image" class="menu_button menu_button_icon" style="flex: 1;">
                                         <i class="fa-solid fa-check"></i>
                                         <span>Apply Image</span>
                                     </button>
-                                    <button id="lightstyler_reset_character" class="menu_button menu_button_icon" style="flex: 1;">
+                                    <button id="voiddrift_reset_character" class="menu_button menu_button_icon" style="flex: 1;">
                                         <i class="fa-solid fa-undo"></i>
                                         <span>Reset to Default</span>
                                     </button>
                                 </div>
-                                <div id="lightstyler_image_preview" style="margin-top: 10px; display: none;">
-                                    <img id="lightstyler_preview_img" style="max-width: 200px; max-height: 150px; border: 1px solid var(--SmartThemeBorderColor); border-radius: 4px;" alt="Preview">
+                                <div id="voiddrift_image_preview" style="margin-top: 10px; display: none;">
+                                    <img id="voiddrift_preview_img" style="max-width: 200px; max-height: 150px; border: 1px solid var(--SmartThemeBorderColor); border-radius: 4px;" alt="Preview">
                                 </div>
                             </div>
                         </div>
@@ -81,30 +81,30 @@
 
                     <!-- Avatar Positioning Section -->
                     <div class="example-extension_block">
-                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('lightstyler_avatar_section').style.display = document.getElementById('lightstyler_avatar_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('lightstyler_avatar_chevron').classList.toggle('fa-chevron-down'); document.getElementById('lightstyler_avatar_chevron').classList.toggle('fa-chevron-right');">
+                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('voiddrift_avatar_section').style.display = document.getElementById('voiddrift_avatar_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('voiddrift_avatar_chevron').classList.toggle('fa-chevron-down'); document.getElementById('voiddrift_avatar_chevron').classList.toggle('fa-chevron-right');">
                             <h4 style="margin: 0; font-size: 0.9em; color: var(--SmartThemeBodyColor);">
-                                <i id="lightstyler_avatar_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
+                                <i id="voiddrift_avatar_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
                                 Avatar Positioning
                             </h4>
                         </div>
-                        <div id="lightstyler_avatar_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
+                        <div id="voiddrift_avatar_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
-                                <label for="lightstyler_avatar_width">Avatar Width (px)</label>
-                                <input id="lightstyler_avatar_width" type="number" class="text_pole" style="width:80px;" maxlength="4">
+                                <label for="voiddrift_avatar_width">Avatar Width (px)</label>
+                                <input id="voiddrift_avatar_width" type="number" class="text_pole" style="width:80px;" maxlength="4">
                             </div>
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
-                                <label for="lightstyler_edit_offset">Edit Button Offset (px)</label>
-                                <input id="lightstyler_edit_offset" type="number" class="text_pole" style="width:80px;" maxlength="4">
+                                <label for="voiddrift_edit_offset">Edit Button Offset (px)</label>
+                                <input id="voiddrift_edit_offset" type="number" class="text_pole" style="width:80px;" maxlength="4">
                             </div>
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
-                                <label for="lightstyler_edit_right_offset">Edit Right Offset (px)</label>
-                                <input id="lightstyler_edit_right_offset" type="number" class="text_pole" style="width:80px;" maxlength="4">
+                                <label for="voiddrift_edit_right_offset">Edit Right Offset (px)</label>
+                                <input id="voiddrift_edit_right_offset" type="number" class="text_pole" style="width:80px;" maxlength="4">
                             </div>
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center; margin-top: 5px;">
                                 <small class="example-extension_description" style="flex-grow: 1; text-align: left; margin-right: 10px;">
                                     Position edit buttons for your avatar size.
                                 </small>
-                                <button id="lightstyler_reset_button" class="menu_button" style="width:60px; padding:2px 8px;">Reset</button>
+                                <button id="voiddrift_reset_button" class="menu_button" style="width:60px; padding:2px 8px;">Reset</button>
                             </div>
                         </div>
                     </div>
@@ -113,33 +113,33 @@
 
                     <!-- Banner Image Positioning Section -->
                     <div class="example-extension_block">
-                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('lightstyler_banner_section').style.display = document.getElementById('lightstyler_banner_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('lightstyler_banner_chevron').classList.toggle('fa-chevron-down'); document.getElementById('lightstyler_banner_chevron').classList.toggle('fa-chevron-right');">
+                        <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('voiddrift_banner_section').style.display = document.getElementById('voiddrift_banner_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('voiddrift_banner_chevron').classList.toggle('fa-chevron-down'); document.getElementById('voiddrift_banner_chevron').classList.toggle('fa-chevron-right');">
                             <h4 style="margin: 0; font-size: 0.9em; color: var(--SmartThemeBodyColor);">
-                                <i id="lightstyler_banner_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
+                                <i id="voiddrift_banner_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
                                 Banner Image Positioning
                             </h4>
                         </div>
-                        <div id="lightstyler_banner_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
+                        <div id="voiddrift_banner_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
-                                <label for="lightstyler_persona_banner_pos">Persona Image Y-Position (%)</label>
-                                <input id="lightstyler_persona_banner_pos" type="number" class="text_pole" min="0" max="100" style="width:80px;" maxlength="5">
+                                <label for="voiddrift_persona_banner_pos">Persona Image Y-Position (%)</label>
+                                <input id="voiddrift_persona_banner_pos" type="number" class="text_pole" min="0" max="100" style="width:80px;" maxlength="5">
                             </div>
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
-                                <label for="lightstyler_character_banner_pos">Character Image Y-Position (%)</label>
-                                <input id="lightstyler_character_banner_pos" type="number" class="text_pole" min="0" max="100" style="width:80px;" maxlength="5">
+                                <label for="voiddrift_character_banner_pos">Character Image Y-Position (%)</label>
+                                <input id="voiddrift_character_banner_pos" type="number" class="text_pole" min="0" max="100" style="width:80px;" maxlength="5">
                             </div>
                             <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center; margin-top: 5px;">
                                 <small class="example-extension_description" style="flex-grow: 1; text-align: left; margin-right: 10px;">
                                     Adjust Y-position to frame the banner image.
                                 </small>
                                 <div style="display: flex; align-items: center; gap: 8px;">
-                                    <div id="lightstyler_character_indicator" style="display: none; color: var(--ac); opacity: 0.8;">
+                                    <div id="voiddrift_character_indicator" style="display: none; color: var(--ac); opacity: 0.8;">
                                         <small style="display: flex; align-items: center;">
                                             <i class="fa-solid fa-user" style="margin-right: 4px; font-size: 0.8em;"></i>
-                                            <span id="lightstyler_character_name"></span>
+                                            <span id="voiddrift_character_name"></span>
                                         </small>
                                     </div>
-                                    <button id="lightstyler_bannerpos_reset_button" class="menu_button" style="width:60px; padding:2px 8px;">Reset</button>
+                                    <button id="voiddrift_bannerpos_reset_button" class="menu_button" style="width:60px; padding:2px 8px;">Reset</button>
                                 </div>
                             </div>
                         </div>
@@ -152,13 +152,13 @@
                 <div class="example-extension_block">
                     <div class="flex-container" style="justify-content: space-between; align-items: center; margin-bottom: 10px;">
                         <label style="font-weight: normal; opacity: 0.9;">Reset All Settings</label>
-                        <button id="lightstyler_reset_all_button" class="menu_button menu_button_icon">
+                        <button id="voiddrift_reset_all_button" class="menu_button menu_button_icon">
                             <i class="fa-solid fa-rotate-left"></i>
                             <span>Reset All to Default</span>
                         </button>
                     </div>
                     <small style="opacity: 0.7; line-height: 1.4; display: block;">
-                        Reset all LightStyler settings and clear alternative character image selections.
+                        Reset all VoidDrift settings and clear alternative character image selections.
                     </small>
                 </div>
             </div>
