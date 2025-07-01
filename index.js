@@ -503,13 +503,29 @@ jQuery(function () {
 
             if (enabled) {
                 this.loadStylesheet();
+                this.addThemeClass();
                 if (themeSettings) themeSettings.style.display = "";
                 this.updateStyles();
             } else {
                 if (styleTag) styleTag.remove();
+                this.removeThemeClass();
                 if (themeSettings) themeSettings.style.display = "none";
                 this.clearCssVariables();
             }
+        },
+
+        /**
+         * Add the voiddrift-theme class to enable namespaced CSS
+         */
+        addThemeClass() {
+            document.body.classList.add('voiddrift-theme');
+        },
+
+        /**
+         * Remove the voiddrift-theme class to disable namespaced CSS
+         */
+        removeThemeClass() {
+            document.body.classList.remove('voiddrift-theme');
         },
 
         /**
@@ -1150,6 +1166,8 @@ jQuery(function () {
     //================================================================================
 
     function main() {
+        const settings = Utils.getSettings();
+        ThemeManager.setWhisperLightEnabled(settings.whisperLight);
         Initialization.setupChatObservers();
         Initialization.setupEventListeners();
         Initialization.setupSettingsObserver();
