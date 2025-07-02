@@ -1,12 +1,12 @@
 /*
 ================================================================================
-  MODERN & DYNAMIC MESSAGE LAYOUT v23 by AI Archaea
+  MODERN & DYNAMIC MESSAGE LAYOUT v24 by AI Archaea & Gemini Pro
 ================================================================================
   AUTHORS: AI Archaea & AI Assistant(Gemini Pro 2.5)
-  LAST UPDATED: June 30, 2025
+  LAST UPDATED: July 1, 2025
 
   FEATURES:
-  - A transform refactor
+  - (Refactored with modern CSS transform for more stable positioning)
   - Large and small avatars with word wrapping
   - Header with avatar and ability to reposition image 
   - repositioned meta info
@@ -35,45 +35,47 @@
     /* -- This is the BASE calculation for the left position of the info blocks -- */
     --info-block-base-left: calc(var(--avatar-width) + var(--avatar-right-margin) + var(--avatar-left-margin) + var(--info-block-left-padding));
 
-    /* -- Independent Name Block Styling -- */
+    /* --- REFACTORED: Name & Timestamp Block Styling --- */
     --header-name-font: "Brillant", serif;
     --header-name-size: 24px;
     --header-name-color: var(--SmartThemeBodyColor);
     --header-name-glow: 0 0 7px #FFFFE0;
-    --name-top-position: 6px;               /* Vertical position for the Name. */
-    --timestamp-top-position: 25px;         /* Vertical position for the Timestamp. */
+    
+    /* +++ NEW: This now controls the top position of the ENTIRE info block. +++ */
+    --info-block-top-offset: 25px;
+    
+    /* +++ NEW: This 'nudges' the name up/down without breaking layout. Negative values go up. +++ */
+    --name-vertical-nudge: -19px;
 
-    /* -- Metadata Block Styling -- */
+    /* --- DEPRECATED by the new method --- */
+    /* --name-top-position: 6px; */
+    /* --timestamp-top-position: 25px; */
+
+    /* -- Metadata Block Styling (This system remains the same, it's independent) -- */
     --metadata-font-size: calc(var(--mainFontSize) * 0.75);
     --metadata-font-weight: 400;
     --metadata-start-top: 45px;             /* Vertical start position for the entire metadata block. */
     --metadata-line-height: 16px;           /* The space between each line of metadata. */
     --metadata-horizontal-offset: -10px;    /* Nudges the metadata block left/right relative to the name. */
 
-    /* -- Independent Button Positioning -- */
-    --buttons-top-offset: 90px;             /* Vertical offset for the main buttons. */
-    --buttons-right-offset: 5px;           /* Horizontal offset for the main buttons. */
-    /*--edit-buttons-top-offset: 390px;*/   /* DEPRECATED: Now controlled by index.js */
-    --edit-buttons-right-offset: 25px;      /* Horizontal offset for the edit buttons. */
+    /* -- Independent Button Positioning (No changes needed here!) -- */
+    --buttons-top-offset: 90px;
+    --buttons-right-offset: 5px;
+    --edit-buttons-right-offset: 25px;              
+    --reasoning-edit-top-compensation: -100px;
+    --reasoning-edit-right-compensation: -40px;     /* Horizontal offset for the edit buttons. */
     
-      /* -- Reasoning Edit Button Offset Calculations -- */
-    /* These handle the container anchor differences between main edit and reasoning edit buttons */
-    --reasoning-edit-top-compensation: -100px;    /* Compensation for different container anchoring */
-    --reasoning-edit-right-compensation: -40px;   /* Compensation for different container anchoring */
-    
-    /* -- Reasoning Block Controls -- */
-    --reasoning-actions-offset: 15px;       /* How far down to push reasoning actions */
-    --reasoning-button-space: 60px;         /* Space to reserve for reasoning buttons */
-    --reasoning-actions-right-offset: -2px; /* Right positioning for reasoning action buttons */
-    --reasoning-header-width: 280px;        /* Fixed width for reasoning header block */
-    --reasoning-header-right-offset: 100px; /* Right offset for reasoning header */
-    --reasoning-textarea-right-margin: 10px; /* Right margin for reasoning textarea */
-  }
+    /* -- Reasoning Block Controls (No changes needed here!) -- */
+    --reasoning-actions-offset: 15px;               /* How far down to push reasoning actions */
+    --reasoning-button-space: 60px;                 /* Space to reserve for reasoning buttons what does it do? */
+    --reasoning-actions-right-offset: -2px;
+    --reasoning-header-width: 280px;
+    --reasoning-header-right-offset: 100px;
+    --reasoning-textarea-right-margin: 10px;
+}
 
-  /* --- Step 2: CORE MESSAGE STRUCTURE (Correct Float Method) --- */
-  /* This structure is based on your confirmed working snippet.      */
-  /* --------------------------------------------------------------- */
-
+  /* --- Step 2: CORE MESSAGE STRUCTURE (No changes needed here) --- */
+  /* ... your existing Step 2 CSS ... */
   body.voiddrift-theme #chat .mes {
     display: block;
     position: relative;
@@ -99,17 +101,14 @@
   }
 
   body.voiddrift-theme #chat .mes .mes_block {
-    display: block; /* Changed from flex to block */
-    overflow-x: visible; /* Key for word wrap fix! */
-    transform: none; /* Override SillyTavern's swipe transforms */
+    display: block;
+    overflow-x: visible;
+    /* +++ FIX: Added !important to win against inline styles from swipe JS +++ */
+    transform: none !important; 
   }
 
-
-  
-  /* --- Step 3: AVATAR & HEADER BANNER STYLING --- */
-/* Controls for the avatar image, mask, and header background. */
-/* ----------------------------------------------------------- */
-
+  /* --- Step 3: AVATAR & HEADER BANNER STYLING (No changes needed here) --- */
+  /* ... your existing Step 3 CSS ... */
   body.voiddrift-theme #chat .mes .avatar,
   body.voiddrift-theme #chat .mes .avatar img {
     width: 100%;
@@ -163,82 +162,97 @@
   body.voiddrift-theme #chat .mes[is_user="false"]::before { background-position: center var(--character-banner-pos, 27%); }
   body.voiddrift-theme #chat .mes[is_user="true"]::before { background-position: center var(--persona-banner-pos, 15%); }
 
-/* --- Step 4: REPOSITIONED INFO BLOCK (NAME, TIME, METADATA) --- */
-/* The two-block system for all the info text in the header.       */
-/* --------------------------------------------------------------- */
 
-/* Part A: The Timestamp Container (Flexbox Fix) */
-  body.voiddrift-theme #chat .mes .mes_block .ch_name {
+/* --- Step 4: REPOSITIONED INFO BLOCK (REFACTORED with transform) --- */
+/* This new method is more stable and won't cause other elements to shift. */
+/* ---------------------------------------------------------------------- */
+
+/* Part A: The Main Info Container (.ch_name) */
+/* We will now use this to stack our items vertically. */
+body.voiddrift-theme #chat .mes .mes_block .ch_name {
+    /* --- KEEP THESE RULES --- */
     position: absolute;
     left: var(--info-block-base-left);
-    top: var(--timestamp-top-position);
     z-index: 5;
-    display: flex;
-    align-items: center;
-    gap: var(--timestamp-icon-gap);
     height: auto;
     margin: 0;
-    overflow: visible;
     width: calc(100% - var(--info-block-base-left));
-    justify-content: space-between;
-    transform: none !important;/* Prevent transform inheritance */
-  }
-
-  body.voiddrift-theme #chat .mes .mes_block .ch_name .flex1 {
-  	min-height: 40px !important; /* freeze to fix pixel shift when mes editing */
+    
+    /* --- CHANGE THESE RULES --- */
+    /* Use the new variable to set the top for the whole block */
+    top: var(--info-block-top-offset); 
+    
+    /* Use flexbox to create a vertical stack */
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; /* Align items to the left */
 }
 
-/* Part B: The Character Name (Styled Independently) */
-  body.voiddrift-theme #chat .mes .mes_block .ch_name .name_text {
-    position: absolute;
-    left: 0;
-    top: calc(var(--name-top-position) - var(--timestamp-top-position));
+  body.voiddrift-theme #chat .mes .mes_block .ch_name .flex1 {
+  	min-height: 40px !important; 
+}
+
+/* Part B: The Character Name (.name_text) - The "Sticker" */
+/* We no longer rip this out of the layout. We just nudge it. */
+body.voiddrift-theme #chat .mes .mes_block .ch_name .name_text {
+    /* --- REMOVE OLD RULES --- */
+    /* position: absolute; */
+    /* left: 0; */
+    /* top: calc(...); */
+
+    /* --- KEEP THESE RULES --- */
     z-index: 6;
     margin: 0;
     font-family: var(--header-name-font);
     font-size: var(--header-name-size);
     color: var(--header-name-color);
-    transform: none !important; /* Prevent transform inheritance */
+
+    /* +++ THE MAGIC: We use transform to slide the element up without affecting anything else. +++ */
+    transform: translateY(var(--name-vertical-nudge));  /* Prevent transform inheritance */
     /* text-shadow: var(--header-name-glow); */
-  }
+}
 
-/* Part C: Timestamp, Icon, & Metadata Stack (Theme Integrated) */
-  body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp,
-  body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp-icon {
+/* Part C: The Timestamp & Icon */
+/* These now automatically fall into place below the name. */
+body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp,
+body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp-icon {
+    /* +++ ADDED: A flex container to keep the icon and text together in a row +++ */
+    display: flex;
+    align-items: center;
+    gap: var(--timestamp-icon-gap);
+    
+    /* --- CHANGE: We don't need to position it anymore! It just works. --- */
     position: static;
+}
 
-  }
-
-  body.voiddrift-theme #chat .mes .timestamp,
-  body.voiddrift-theme #chat .mes .timestamp-icon,
-  body.voiddrift-theme #chat .mes .mesIDDisplay,
-  body.voiddrift-theme #chat .mes .tokenCounterDisplay,
-  body.voiddrift-theme #chat .mes .mes_timer {
+/* Part D: Metadata Stack (No changes needed, it's a separate system) */
+body.voiddrift-theme #chat .mes .timestamp,
+body.voiddrift-theme #chat .mes .timestamp-icon,
+body.voiddrift-theme #chat .mes .mesIDDisplay,
+body.voiddrift-theme #chat .mes .tokenCounterDisplay,
+body.voiddrift-theme #chat .mes .mes_timer {
     font-size: var(--metadata-font-size);
     font-weight: var(--metadata-font-weight);
     color: var(--SmartThemeBodyColor);
     text-shadow: 0px 0px calc(var(--shadowWidth) * 1px) var(--SmartThemeShadowColor);
-  }
+}
 
-  body.voiddrift-theme #chat .mes .mesIDDisplay,
-  body.voiddrift-theme #chat .mes .tokenCounterDisplay,
-  body.voiddrift-theme #chat .mes .mes_timer {
+body.voiddrift-theme #chat .mes .mesIDDisplay,
+body.voiddrift-theme #chat .mes .tokenCounterDisplay,
+body.voiddrift-theme #chat .mes .mes_timer {
     position: absolute;
     left: calc(var(--info-block-base-left) + var(--metadata-horizontal-offset));
     margin: 0;
     z-index: 5;
-  }
-  
-/*
-  METADATA STACKING NOTE:
-  Each item is positioned using the start-top and line-height.
-  If you disable an item, adjust the `* N` multiplier for the items below it.
-*/
-  body.voiddrift-theme #chat .mes .mesIDDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 0)); }
-  body.voiddrift-theme #chat .mes .tokenCounterDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 1)); }
-  body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 2)); }
+}
+
+/* Metadata stacking note remains the same */
+body.voiddrift-theme #chat .mes .mesIDDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 0)); }
+body.voiddrift-theme #chat .mes .tokenCounterDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 1)); }
+body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 2)); }
 
 
+/* --- Step 5 & 6 (No changes needed, but I'll add the swipe button fix) --- */
 /* --- Step 5: MESSAGE CONTENT & BUTTONS --- */
 /* The main text area and the robustly positioned buttons. */
 /* ------------------------------------------------------- */
@@ -326,9 +340,8 @@
     top: calc(var(--edit-buttons-top-offset) + var(--reasoning-edit-top-compensation));
     right: calc(var(--edit-buttons-right-offset) + var(--reasoning-edit-right-compensation));
   }
-
-  /* THE BUTTONS FIX: Buttons are now positioned using flexbox,
-     making them independent of the avatar's size. */
+  
+/* THE BUTTONS FIX: This robust positioning is still the best method! */
   body.voiddrift-theme #chat .mes .mes_buttons {
     order: 1; /* Buttons appear above the text */
     align-self: flex-end; /* Align to the right */
@@ -347,6 +360,12 @@
     top: var(--edit-buttons-top-offset) !important;
     right: var(--edit-buttons-right-offset) !important;
   }
+  
+  /* +++ FIX: This makes your rule more specific to beat documentstyle's defaults +++ */
+  body.voiddrift-theme.documentstyle #chat .mes .mes_edit_buttons {
+    right: var(--edit-buttons-right-offset) !important;
+  }
+
 
 /* --- Step 6: ADAPTIVE & THEME-SPECIFIC STYLING --- */
 /* Rules for different chat modes and swipe actions.   */
@@ -361,7 +380,7 @@
   body.voiddrift-theme:not(.bubblechat) #chat .mes::before,
   body.voiddrift-theme.documentstyle #chat .mes::before { border-radius: 0; }
 
-  /* Spacing for swipe actions etc. */
+/* Spacing for swipe actions etc. */
   body.voiddrift-theme #chat .swipe_right,
   body.voiddrift-theme #chat .swipe_left { bottom: 19px !important;}
   body.voiddrift-theme #chat .swipe_left { left: 5px !important; }
