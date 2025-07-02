@@ -76,7 +76,7 @@
   body.voiddrift-theme #chat .mes {
     display: block;
     position: relative;
-    padding-top: var(--header-height);
+    padding-top: var(--header-height) !important;
     margin-top: 5px;
     overflow: visible;
 
@@ -147,14 +147,14 @@
     background-size: cover;
   -webkit-mask-image:
     linear-gradient(to left, black 60%, transparent 100%),
-    linear-gradient(to bottom, black 85%, transparent 100%);
-  -webkit-mask-composite: intersect;
+    linear-gradient(to bottom, black 85%, transparent 100%) !important;
+  -webkit-mask-composite: intersect !important;
 
   mask-image:
 	radial-gradient(ellipse at center, black 60%, transparent 100%),
     linear-gradient(to left, black 80%, transparent 100%),
-    linear-gradient(to bottom, black 85%, transparent 100%);
-  mask-composite: intersect;
+    linear-gradient(to bottom, black 85%, transparent 100%) !important;
+  mask-composite: intersect !important;
   mask-repeat: no-repeat;
     opacity: 0.8;
     z-index: 0;
@@ -180,11 +180,11 @@
     overflow: visible;
     width: calc(100% - var(--info-block-base-left));
     justify-content: space-between;
-    transform: none; /* Prevent transform inheritance */
+    transform: none !important;/* Prevent transform inheritance */
   }
 
   body.voiddrift-theme #chat .mes .mes_block .ch_name .flex1 {
-  	min-height: 40px; /* freeze to fix pixel shift when mes editing */
+  	min-height: 40px !important; /* freeze to fix pixel shift when mes editing */
 }
 
 /* Part B: The Character Name (Styled Independently) */
@@ -197,7 +197,7 @@
     font-family: var(--header-name-font);
     font-size: var(--header-name-size);
     color: var(--header-name-color);
-    transform: none; /* Prevent transform inheritance */
+    transform: none !important; /* Prevent transform inheritance */
     /* text-shadow: var(--header-name-glow); */
   }
 
@@ -243,9 +243,9 @@
 /* ------------------------------------------------------- */
   body.voiddrift-theme #chat .mes .mes_block .mes_text {
     padding-top: 55px; /* padding of where text starts */
-    padding-right: 15px;
+    padding-right: 15px !important;
     padding-bottom: 10px;
-    margin-left: 1px; /* Negative values move it further left */
+    margin-left: 1px !important; /* Negative values move it further left */
     font-size: 16px;
     order: 2; 
 	  position: relative;
@@ -333,18 +333,18 @@
     align-self: flex-end; /* Align to the right */
     position: absolute;
     z-index: 5;
-    top: var(--buttons-top-offset);
-    right: var(--buttons-right-offset);
-    left: unset;
-    margin-top: 0; /* Removed margin-top */
-    margin-right: 0; /* Removed margin-right */
+    top: var(--buttons-top-offset) !important;
+    right: var(--buttons-right-offset) !important;
+    left: unset !important;
+    margin-top: 0 !important; /* Removed margin-top */
+    margin-right: 0 !important; /* Removed margin-right */
   }
 
   body.voiddrift-theme #chat .mes .mes_edit_buttons {
-    position: absolute;
+    position: absolute !important;
     z-index: 5;
-    top: var(--edit-buttons-top-offset);
-    right: var(--edit-buttons-right-offset);
+    top: var(--edit-buttons-top-offset) !important;
+    right: var(--edit-buttons-right-offset) !important;
   }
 
 /* --- Step 6: ADAPTIVE & THEME-SPECIFIC STYLING --- */
@@ -362,6 +362,6 @@
 
   /* Spacing for swipe actions etc. */
   body.voiddrift-theme #chat .swipe_right,
-  body.voiddrift-theme #chat .swipe_left { bottom: 19px;}
-  body.voiddrift-theme #chat .swipe_left { left: 5px; }
-  body.voiddrift-theme #chat .last_mes .mes_block { padding-bottom: 28px; }
+  body.voiddrift-theme #chat .swipe_left { bottom: 19px !important;}
+  body.voiddrift-theme #chat .swipe_left { left: 5px !important; }
+  body.voiddrift-theme #chat .last_mes .mes_block { padding-bottom: 28px !important; }

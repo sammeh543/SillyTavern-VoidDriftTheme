@@ -1,6 +1,6 @@
 {
     "display_name": "Void Drift Theme",
-    "loading_order": 999,
+    "loading_order": 10,
     "requires": [],
     "js": "index.js",
     "author": "aiarchaea",
