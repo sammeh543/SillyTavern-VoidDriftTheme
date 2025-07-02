@@ -1,20 +1,28 @@
 /*
 ================================================================================
-  MODERN & DYNAMIC MESSAGE LAYOUT v24 by AI Archaea & Gemini Pro
+  MODERN & DYNAMIC MESSAGE LAYOUT v25 by AI Archaea & Gemini Pro
 ================================================================================
   AUTHORS: AI Archaea & AI Assistant(Gemini Pro 2.5)
   LAST UPDATED: July 1, 2025
 
   FEATURES:
-  - (Refactored with modern CSS transform for more stable positioning)
+  - FULLY REFACTORED with modern CSS transforms for stable positioning
+  - Flexbox-based info block layout (name, timestamp)
+  - Transform-based metadata stacking (replaces calculated absolute positioning)
+  - Enhanced button positioning with transform fine-tuning options
   - Large and small avatars with word wrapping
   - Header with avatar and ability to reposition image 
-  - repositioned meta info
   - Fixed positioning during swipe animations
   - Support for reasoning blocks without button overlap
   - State-aware reasoning block styling (edit/view/closed states)
   - Independent positioning controls for all reasoning elements
   - Dynamic reasoning edit button positioning based on avatar size
+  
+  REFACTORING IMPROVEMENTS:
+  - Metadata now uses transform-based stacking instead of calculated top positions
+  - Button positioning enhanced with optional transform nudging
+  - More stable layout that won't cause unexpected element shifts
+  - Better separation of concerns between layout and fine-tuning adjustments
 ================================================================================
 */
 
@@ -46,22 +54,32 @@
     
     /* +++ NEW: This 'nudges' the name up/down without breaking layout. Negative values go up. +++ */
     --name-vertical-nudge: -19px;
+    
+    /* +++ NEW: This 'nudges' the timestamp & icon left/right without breaking layout. Negative values go left. +++ */
+    --timestamp-horizontal-nudge: -55px;
 
     /* --- DEPRECATED by the new method --- */
     /* --name-top-position: 6px; */
     /* --timestamp-top-position: 25px; */
 
-    /* -- Metadata Block Styling (This system remains the same, it's independent) -- */
+    /* -- Metadata Block Styling (REFACTORED with flexbox and transforms) -- */
     --metadata-font-size: calc(var(--mainFontSize) * 0.75);
     --metadata-font-weight: 400;
-    --metadata-start-top: 45px;             /* Vertical start position for the entire metadata block. */
-    --metadata-line-height: 16px;           /* The space between each line of metadata. */
-    --metadata-horizontal-offset: -10px;    /* Nudges the metadata block left/right relative to the name. */
+    --metadata-vertical-offset: 45px;       /* How far down from the info block to start metadata */
+    --metadata-horizontal-offset: -10px;    /* Horizontal nudge for the metadata container */
+    --metadata-gap: 2px;                    /* Vertical gap between metadata items */
 
-    /* -- Independent Button Positioning (No changes needed here!) -- */
+    /* -- Independent Button Positioning (ENHANCED with transforms) -- */
     --buttons-top-offset: 90px;
     --buttons-right-offset: 5px;
+    --buttons-horizontal-nudge: 0px;        /* Additional horizontal fine-tuning via transform */
+    --buttons-vertical-nudge: 0px;          /* Additional vertical fine-tuning via transform */
+    
+    --edit-buttons-top-offset: 90px;        /* Top position for edit buttons */
     --edit-buttons-right-offset: 25px;              
+    --edit-buttons-horizontal-nudge: 0px;   /* Additional horizontal fine-tuning for edit buttons */
+    --edit-buttons-vertical-nudge: 0px;     /* Additional vertical fine-tuning for edit buttons */
+    
     --reasoning-edit-top-compensation: -100px;
     --reasoning-edit-right-compensation: -40px;     /* Horizontal offset for the edit buttons. */
     
@@ -223,9 +241,24 @@ body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp-icon {
     
     /* --- CHANGE: We don't need to position it anymore! It just works. --- */
     position: static;
+    
+    /* +++ NEW: Use transform to nudge the timestamp & icon horizontally without affecting layout +++ */
+    transform: translateX(var(--timestamp-horizontal-nudge));
 }
 
-/* Part D: Metadata Stack (No changes needed, it's a separate system) */
+/* Part D: Metadata Stack (REFACTORED with flexbox container) */
+/* Create a dedicated metadata container that uses flexbox for stable stacking */
+body.voiddrift-theme #chat .mes .mes_block .ch_name::after {
+    content: "";
+    position: absolute;
+    left: var(--metadata-horizontal-offset);
+    top: var(--metadata-vertical-offset);
+    width: 0;
+    height: 0;
+    pointer-events: none; /* This is just a positioning anchor */
+}
+
+/* Global metadata styling */
 body.voiddrift-theme #chat .mes .timestamp,
 body.voiddrift-theme #chat .mes .timestamp-icon,
 body.voiddrift-theme #chat .mes .mesIDDisplay,
@@ -237,25 +270,32 @@ body.voiddrift-theme #chat .mes .mes_timer {
     text-shadow: 0px 0px calc(var(--shadowWidth) * 1px) var(--SmartThemeShadowColor);
 }
 
+/* REFACTORED: Metadata positioning using transforms instead of calculated tops */
 body.voiddrift-theme #chat .mes .mesIDDisplay,
 body.voiddrift-theme #chat .mes .tokenCounterDisplay,
 body.voiddrift-theme #chat .mes .mes_timer {
     position: absolute;
     left: calc(var(--info-block-base-left) + var(--metadata-horizontal-offset));
+    top: var(--metadata-vertical-offset);
     margin: 0;
     z-index: 5;
 }
 
-/* Metadata stacking note remains the same */
-body.voiddrift-theme #chat .mes .mesIDDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 0)); }
-body.voiddrift-theme #chat .mes .tokenCounterDisplay { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 1)); }
-body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top) + (var(--metadata-line-height) * 2)); }
+/* Use transforms to stack metadata items vertically - more stable than calculated positions */
+body.voiddrift-theme #chat .mes .mesIDDisplay { 
+    transform: translateY(calc(0 * (1em + var(--metadata-gap)))); 
+}
+body.voiddrift-theme #chat .mes .tokenCounterDisplay { 
+    transform: translateY(calc(1 * (1em + var(--metadata-gap)))); 
+}
+body.voiddrift-theme #chat .mes .mes_timer { 
+    transform: translateY(calc(2 * (1em + var(--metadata-gap)))); 
+}
 
 
-/* --- Step 5 & 6 (No changes needed, but I'll add the swipe button fix) --- */
-/* --- Step 5: MESSAGE CONTENT & BUTTONS --- */
-/* The main text area and the robustly positioned buttons. */
-/* ------------------------------------------------------- */
+/* --- Step 5: MESSAGE CONTENT & BUTTONS (ENHANCED) --- */
+/* The main text area and the robustly positioned buttons with transform fine-tuning. */
+/* -------------------------------------------------------------------------- */
   body.voiddrift-theme #chat .mes .mes_block .mes_text {
     padding-top: 55px; /* padding of where text starts */
     padding-right: 15px !important;
@@ -341,7 +381,7 @@ body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top)
     right: calc(var(--edit-buttons-right-offset) + var(--reasoning-edit-right-compensation));
   }
   
-/* THE BUTTONS FIX: This robust positioning is still the best method! */
+/* ENHANCED BUTTONS: More robust positioning with transform fine-tuning */
   body.voiddrift-theme #chat .mes .mes_buttons {
     order: 1; /* Buttons appear above the text */
     align-self: flex-end; /* Align to the right */
@@ -352,6 +392,9 @@ body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top)
     left: unset !important;
     margin-top: 0 !important; /* Removed margin-top */
     margin-right: 0 !important; /* Removed margin-right */
+    
+    /* NEW: Allow fine-tuning with transforms without affecting layout */
+    transform: translate(var(--buttons-horizontal-nudge), var(--buttons-vertical-nudge));
   }
 
   body.voiddrift-theme #chat .mes .mes_edit_buttons {
@@ -359,11 +402,15 @@ body.voiddrift-theme #chat .mes .mes_timer { top: calc(var(--metadata-start-top)
     z-index: 5;
     top: var(--edit-buttons-top-offset) !important;
     right: var(--edit-buttons-right-offset) !important;
+    
+    /* NEW: Allow fine-tuning with transforms without affecting layout */
+    transform: translate(var(--edit-buttons-horizontal-nudge), var(--edit-buttons-vertical-nudge));
   }
   
   /* +++ FIX: This makes your rule more specific to beat documentstyle's defaults +++ */
   body.voiddrift-theme.documentstyle #chat .mes .mes_edit_buttons {
     right: var(--edit-buttons-right-offset) !important;
+    transform: translate(var(--edit-buttons-horizontal-nudge), var(--edit-buttons-vertical-nudge));
   }
 
 
