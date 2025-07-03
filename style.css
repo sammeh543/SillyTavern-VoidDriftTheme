@@ -54,9 +54,7 @@
     /* -- Metadata Block Styling -- */
     --metadata-font-size: calc(var(--mainFontSize) * 0.75);
     --metadata-font-weight: 400;
-    --metadata-vertical-offset: 50px; /* Distance below the timestamp */
-    --metadata-horizontal-offset: 80px;
-    --metadata-gap: 2px;
+    --metadata-item-margin: 3px; /* Horizontal space between metadata items */
     --metadata-stack-transform: translate(5px, 55px);
 
     /* -- Button Positioning -- */
@@ -216,19 +214,12 @@ body.voiddrift-theme #chat .mes .mes_timer {
     font-weight: var(--metadata-font-weight);
     color: var(--SmartThemeBodyColor);
     text-shadow: 0px 0px calc(var(--shadowWidth) * 1px) var(--SmartThemeShadowColor);
-    
-    /*! position: absolute; */
-    margin: 0;
+    margin: 0 var(--metadata-item-margin) 0 0;
     z-index: 5;
-    /* Position them relative to the main .ch_name anchor. */
     display: flex;
     flex-direction: column; 
-    justify-content: left;
-    /*! transform: translate(310px,-400px); */   
-    
-    left: var(--metadata-horizontal-offset); 
-    top: var(--metadata-vertical-offset);
-     
+    justify-content: left; 
+
     white-space: nowrap;
     transform: var(--metadata-stack-transform);
 }
