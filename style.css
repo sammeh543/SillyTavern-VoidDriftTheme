@@ -60,10 +60,10 @@
     /* -- Button Positioning -- */
     --buttons-top-offset: 70px;
     --buttons-right-offset: 5px;
-    --edit-buttons-top-offset: 90px;
-    --edit-buttons-right-offset: 25px;
-    --reasoning-edit-top-compensation: -100px;
-    --reasoning-edit-right-compensation: -40px;
+    --edit-buttons-top-offset: 90px;                     /* -- controled by index.js  -- */
+    --edit-buttons-right-offset: 25px;                   /* -- controled by index.js  -- */
+    --reasoning-edit-top-compensation: -100px;           /* -- controled by index.js  -- */
+    --reasoning-edit-right-compensation: -40px;          /* -- controled by index.js  -- */
     --reasoning-actions-offset: 15px;
     --reasoning-actions-right-offset: -2px;
     --reasoning-header-width: 280px;
