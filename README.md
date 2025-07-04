@@ -81,6 +81,7 @@ Tavern's" chat, it will apply it to Jane Silly's banner.
   message individually for character-specific styling, so fewer messages =
   faster loading. Massive chats take a few seconds to load, but hasn't felt sluggish.
 
+  I highly reccommend mobile users try Silly Tavern in PWA mode(Add to homescreen). While not a "true" app its a limited browser and has truly improved my overall Silly Tavern experience on iOS (mostly accidently swiping the screne and the browser going back a page canceling my generation. And fighting with text input.)
 
 - **Inspo and Credit**
 I was heavily inspired by RivelleDays Moonlit Echoes Extension and Character
