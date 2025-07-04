@@ -59,13 +59,13 @@
 
     /* -- Button Positioning -- */
     --buttons-top-offset: 70px;
-    --buttons-right-offset: 5px;
+    --buttons-right-offset: 15px;
     --edit-buttons-top-offset: 90px;                     /* -- controled by index.js  -- */
     --edit-buttons-right-offset: 25px;                   /* -- controled by index.js  -- */
     --reasoning-edit-top-compensation: -100px;           /* -- controled by index.js  -- */
     --reasoning-edit-right-compensation: -40px;          /* -- controled by index.js  -- */
     --reasoning-actions-offset: 15px;
-    --reasoning-actions-right-offset: -30px;
+    --reasoning-actions-right-offset: -20px;
     --reasoning-header-width: 250px;
     --reasoning-textarea-right-margin: 10px;
 }
@@ -303,7 +303,6 @@ body.voiddrift-theme #chat .mes .mes_buttons {
     right: var(--buttons-right-offset) !important;
     left: unset !important;
     margin: 0 !important;
-    transform: translate(var(--buttons-horizontal-nudge), var(--buttons-vertical-nudge));
 }
 
 body.voiddrift-theme #chat .mes .mes_edit_buttons {
