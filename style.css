@@ -65,7 +65,7 @@
     --reasoning-edit-top-compensation: -100px;           /* -- controled by index.js  -- */
     --reasoning-edit-right-compensation: -40px;          /* -- controled by index.js  -- */
     --reasoning-actions-offset: 15px;
-    --reasoning-actions-right-offset: -2px;
+    --reasoning-actions-right-offset: -30px;
     --reasoning-header-width: 280px;
     --reasoning-textarea-right-margin: 10px;
 }
