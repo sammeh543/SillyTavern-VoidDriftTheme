@@ -1,4 +1,4 @@
-# LightStyler
+# Void Drift Theme
 
 A comprehensive SillyTavern extension that enhances chat aesthetics with dynamic
 avatar layouts, character banners, and alternative image management.
@@ -46,7 +46,7 @@ PC Layout - Custom or Avatar Banner (Left Avatar Size can be changed)
 
 **Image Gallery:** Upload photos within Silly Tavern via the image gallery. Character
 Management Panel > Select Character > Dropdown Next to Avatar > Show Gallery >
-Drop Images > Click 🔃 in LightStyler Settings and it will populate and switch
+Drop Images > Click 🔃 in VoidDrift Settings and it will populate and switch
 to current character. 
 
 **Character Folder Mapping:** Or place them in `/user/images/[character name]`.
@@ -74,12 +74,10 @@ Tavern's" chat, it will apply it to Jane Silly's banner.
 
 1. Install with github link via extension manager in ST.
 2. Enable the extension in the Extensions panel
-3. Configure settings in the LightStyler panel
+3. Configure settings in the VoidDrift panel
 
 - **Note** - If the chat gets a bit slow I highly recommend lowering `# Msg. to
-  Load` in User Settings > Chat/Message Handling. LightStyler processes each
-  message individually for character-specific styling, so fewer messages =
-  faster loading. Massive chats take a few seconds to load, but hasn't felt sluggish.
+  Load` in User Settings > Chat/Message Handling.
 
   I highly reccommend mobile users try Silly Tavern in PWA mode(Add to homescreen). While not a "true" app its a limited browser and has truly improved my overall Silly Tavern experience on iOS (mostly accidently swiping the screne and the browser going back a page canceling my generation. And fighting with text input.)
 
