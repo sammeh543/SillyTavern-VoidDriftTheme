@@ -23,13 +23,13 @@
 :root {
     /* -- Layout & Sizing -- */
     --avatar-left-margin: 0px;
-    --avatar-right-margin: 2px;
+    --avatar-right-margin: 0px;
     --avatar-border: none;
     --header-height: 100px;
-    --info-block-left-padding: 1px;
+    --info-block-left-padding: 0px; /* UNUSED: This variable is no longer used in any calculations. */              
 
     /* -- Base calculation for the left position of all info blocks -- */
-    --info-block-base-left: calc(var(--avatar-width) + var(--avatar-right-margin) + var(--avatar-left-margin) + var(--info-block-left-padding));
+    --info-block-base-left: calc(var(--avatar-width) + var(--avatar-right-margin));
 
     /* --- REFACTORED: Name & Timestamp Block Styling --- */
     --header-name-font: "Brillant", serif;
@@ -48,14 +48,14 @@
     /* ++ NEW: Controls for the TIMESTAMP position ++ */
     /* This positions the entire timestamp/icon group. */
     --timestamp-group-vertical-offset: -20px;
-    --timestamp-group-horizontal-offset: 0px;
+    --timestamp-group-horizontal-offset: 10px;
     --timestamp-icon-gap: 5px;
 
     /* -- Metadata Block Styling -- */
     --metadata-font-size: calc(var(--mainFontSize) * 0.75);
     --metadata-font-weight: 400;
-    --metadata-item-margin: 3px; /* Horizontal space between metadata items */
-    --metadata-stack-transform: translate(5px, 55px);
+    --metadata-item-margin: 10px;                         /* Horizontal space between metadata items */
+    --metadata-stack-transform: translate(15px, 55px);
 
     /* -- Button Positioning -- */
     --buttons-top-offset: 70px;
@@ -66,7 +66,7 @@
     --reasoning-edit-right-compensation: -40px;          /* -- controled by index.js  -- */
     --reasoning-actions-offset: 15px;
     --reasoning-actions-right-offset: -30px;
-    --reasoning-header-width: 280px;
+    --reasoning-header-width: 250px;
     --reasoning-textarea-right-margin: 10px;
 }
 
@@ -219,7 +219,6 @@ body.voiddrift-theme #chat .mes .mes_timer {
     display: flex;
     flex-direction: column; 
     justify-content: left; 
-
     white-space: nowrap;
     transform: var(--metadata-stack-transform);
 }
@@ -261,6 +260,7 @@ body.voiddrift-theme #chat .mes .mes_reasoning_header {
     line-height: 1;
     font-size: calc(var(--mainFontSize) * 0.8); 
     margin-top: 5px;
+    margin: 0.5em 2px;
 }
 
 body.voiddrift-theme #chat .mes .mes_reasoning_actions {
@@ -311,13 +311,13 @@ body.voiddrift-theme #chat .mes .mes_edit_buttons {
     z-index: 5;
     top: var(--edit-buttons-top-offset) !important;
     right: var(--edit-buttons-right-offset) !important;
-    transform: translate(var(--edit-buttons-horizontal-nudge), var(--edit-buttons-vertical-nudge));
 }
 
-/* More specific rule to override documentstyle defaults */
-body.voiddrift-theme.documentstyle #chat .mes .mes_edit_buttons {
-    right: var(--edit-buttons-right-offset) !important;
-    transform: translate(var(--edit-buttons-horizontal-nudge), var(--edit-buttons-vertical-nudge));
+/* DOCUMENTSTYLE OVERRIDE: Define the variable and use it in the same place */
+body.voiddrift-theme.documentstyle #chat .mes .mes_edit_buttons,
+body.voiddrift-theme.documentstyle #chat .mes_reasoning_details:has(.reasoning_edit_textarea) .mes_reasoning_actions {
+    --edit-buttons-vertical-nudge-ds: -260px; /* Nudge value specific to documentstyle */
+    transform: translateY(var(--edit-buttons-vertical-nudge-ds));
 }
 
 
