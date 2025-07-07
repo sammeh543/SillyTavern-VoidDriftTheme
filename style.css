@@ -18,7 +18,6 @@
 ================================================================================
 */
 
-
 /* --- Step 1: GLOBAL CUSTOMIZATION VARIABLES --- */
 :root {
     /* -- Layout & Sizing -- */
@@ -33,7 +32,7 @@
 
     /* --- REFACTORED: Name & Timestamp Block Styling --- */
     --header-name-font: "Brillant", serif;
-    --header-name-size: 25px;
+    --header-name-size: 1.2rem;
     --header-name-color: var(--SmartThemeBodyColor);
      /*--header-name-glow: 0 0 7px #FFFFE0; */
 
@@ -271,7 +270,7 @@ body.voiddrift-theme #chat .mes .mes_reasoning_header {
     line-height: 1;
     font-size: calc(var(--mainFontSize) * 0.8); 
     margin-top: 5px;
-    margin: 0.5em 2px;
+    margin: 1.2em 2px;
 }
 
 body.voiddrift-theme #chat .mes .mes_reasoning_actions {
