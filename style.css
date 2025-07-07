@@ -33,7 +33,7 @@
 
     /* --- REFACTORED: Name & Timestamp Block Styling --- */
     --header-name-font: "Brillant", serif;
-    --header-name-size: 24px;
+    --header-name-size: 25px;
     --header-name-color: var(--SmartThemeBodyColor);
     --header-name-glow: 0 0 7px #FFFFE0;
 
@@ -42,20 +42,22 @@
 
     /* ++ NEW: Controls for the NAME position ++ */
     /* Position of the name, relative to the top-left of the info block. */
-    --name-vertical-offset: -20px; /* Negative values move it up */
-    --name-horizontal-offset: 0px;
+    --name-vertical-offset: -10px; /* Negative values move it up */
+    --name-horizontal-offset: -1px;
 
     /* ++ NEW: Controls for the TIMESTAMP position ++ */
     /* This positions the entire timestamp/icon group. */
     --timestamp-group-vertical-offset: -20px;
-    --timestamp-group-horizontal-offset: 10px;
+    --timestamp-group-horizontal-offset: 12px;
     --timestamp-icon-gap: 5px;
+    --timestamp-dynamic-top-margin: calc(var(--header-name-size) * .7);
 
     /* -- Metadata Block Styling -- */
     --metadata-font-size: calc(var(--mainFontSize) * 0.75);
     --metadata-font-weight: 400;
     --metadata-item-margin: 10px;                         /* Horizontal space between metadata items */
-    --metadata-stack-transform: translate(15px, 55px);
+    --metadata-dynamic-top-margin: calc(var(--header-name-size) * 0.7); /* Scales with name size */
+    --metadata-stack-transform: translate(15px, 30px);
 
     /* -- Button Positioning -- */
     --buttons-top-offset: 70px;
@@ -178,6 +180,7 @@ body.voiddrift-theme #chat .mes .mes_block .ch_name .flex-container.alignItemsBa
     gap: var(--timestamp-icon-gap);
     /* Use transform to move the whole timestamp/icon group into place. */
     transform: translate(var(--timestamp-group-horizontal-offset), var(--timestamp-group-vertical-offset));
+    
 }
 
 /* ISOLATED Character Name: Pulled out of the layout flow completely. */
@@ -194,6 +197,7 @@ body.voiddrift-theme #chat .mes .mes_block .ch_name .name_text {
     /* Nudge it into its final position. */
     transform: translate(var(--name-horizontal-offset), var(--name-vertical-offset));
     white-space: nowrap;
+    
 }
 
 
@@ -203,7 +207,9 @@ body.voiddrift-theme #chat .mes .mes_block .ch_name .name_text {
 body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp,
 body.voiddrift-theme #chat .mes .mes_block .ch_name .timestamp-icon {
     white-space: nowrap;
-    margin-top: 15px;
+    margin-top: var(--timestamp-dynamic-top-margin);
+    
+    
 }
 
 /* Metadata items are positioned relative to the main .ch_name container. */
@@ -221,6 +227,8 @@ body.voiddrift-theme #chat .mes .mes_timer {
     justify-content: left; 
     white-space: nowrap;
     transform: var(--metadata-stack-transform);
+    margin-top: var(--metadata-dynamic-top-margin);
+    
 }
 /* We must group them together since they are separate elements in the HTML */
 body.voiddrift-theme #chat .mes .mesIDDisplay { order: 1; }
