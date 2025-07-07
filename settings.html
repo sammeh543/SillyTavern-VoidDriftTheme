@@ -160,6 +160,34 @@
 
                 <hr class="sysHR" style="margin: 15px 0;" />
 
+                <!-- Name Styling Section -->
+                <div class="example-extension_block">
+                    <div class="flex-container" style="justify-content: space-between; align-items: center; cursor: pointer; padding: 5px 0;" onclick="document.getElementById('voiddrift_name_styling_section').style.display = document.getElementById('voiddrift_name_styling_section').style.display === 'none' ? 'block' : 'none'; document.getElementById('voiddrift_name_styling_chevron').classList.toggle('fa-chevron-down'); document.getElementById('voiddrift_name_styling_chevron').classList.toggle('fa-chevron-right');">
+                        <h4 style="margin: 0; font-size: 0.9em; color: var(--SmartThemeBodyColor);">
+                            <i id="voiddrift_name_styling_chevron" class="fa-solid fa-chevron-right" style="margin-right: 8px; font-size: 0.8em; color: var(--SmartThemeQuoteColor);"></i>
+                            Name Styling
+                        </h4>
+                    </div>
+                    <div id="voiddrift_name_styling_section" style="display: none; margin-top: 10px; padding-left: 20px; border-left: 2px solid var(--SmartThemeBorderColor); margin-left: 8px;">
+                        <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
+                            <label for="voiddrift_header_name_size">Name Font Size (rem)</label>
+                            <input id="voiddrift_header_name_size" type="number" class="text_pole" min="0.5" max="3.0" step="0.1" style="width:80px;" maxlength="5">
+                        </div>
+                        <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center;">
+                            <label for="voiddrift_name_vertical_offset">Name Vertical Offset (px)</label>
+                            <input id="voiddrift_name_vertical_offset" type="number" class="text_pole" style="width:80px;" maxlength="4">
+                        </div>
+                        <div class="example-extension_block flex-container" style="justify-content: space-between; align-items: center; margin-top: 5px;">
+                            <small class="example-extension_description" style="flex-grow: 1; text-align: left; margin-right: 10px;">
+                                Adjust the font size and vertical spacing of character names. Negative values move the name up.
+                            </small>
+                            <button id="voiddrift_name_styling_reset_button" class="menu_button" style="width:60px; padding:2px 8px;">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="sysHR" style="margin: 15px 0;" />
+
                 <!-- Reset All Section -->
                 <div class="example-extension_block">
                     <div class="flex-container" style="justify-content: space-between; align-items: center; margin-bottom: 10px;">

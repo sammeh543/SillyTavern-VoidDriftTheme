@@ -51,6 +51,10 @@ jQuery(function () {
             RESET_ALL_BUTTON: 'voiddrift_reset_all_button',
             CHARACTER_INDICATOR: 'voiddrift_character_indicator',
             CHARACTER_NAME_DISPLAY: 'voiddrift_character_name',
+            // Name styling elements
+            NAME_VERTICAL_OFFSET_INPUT: 'voiddrift_name_vertical_offset',
+            HEADER_NAME_SIZE_INPUT: 'voiddrift_header_name_size',
+            NAME_STYLING_RESET_BUTTON: 'voiddrift_name_styling_reset_button',
             EXTENSIONS_SETTINGS: '#extensions_settings',
             CHAT_CONTAINER: '#chat',
             CHAT_MESSAGE: '.mes',
@@ -76,6 +80,9 @@ jQuery(function () {
             CHARACTER_BANNER: '--character-banner-pos',
             MESSAGE_AVATAR_URL: '--mes-avatar-url',
             CHARACTER_OVERRIDE: '--voiddrift-character-override',
+            // Name styling CSS variables
+            NAME_VERTICAL_OFFSET: '--name-vertical-offset',
+            HEADER_NAME_SIZE: '--header-name-size',
         },
     };
 
@@ -99,6 +106,9 @@ jQuery(function () {
         reasoning_right_compensation_small: -40,
         personaBannerPos: 15,
         characterBannerPos: 27,
+        // Name styling settings
+        nameVerticalOffset: -10,
+        headerNameSize: 1.0,
         // Per-character settings storage
         characterPositions: {},
     };
@@ -564,6 +574,8 @@ jQuery(function () {
                 reasoningRightCompensation: CONSTANTS.DOM.REASONING_RIGHT_COMPENSATION_INPUT,
                 personaBannerPos: CONSTANTS.DOM.PERSONA_BANNER_POS_INPUT,
                 characterBannerPos: CONSTANTS.DOM.CHARACTER_BANNER_POS_INPUT,
+                nameVerticalOffset: CONSTANTS.DOM.NAME_VERTICAL_OFFSET_INPUT,
+                headerNameSize: CONSTANTS.DOM.HEADER_NAME_SIZE_INPUT,
             };
 
             const elements = Utils.getElements(elementIds);
@@ -579,6 +591,10 @@ jQuery(function () {
             
             document.documentElement.style.setProperty(CONSTANTS.CSS_VARS.PERSONA_BANNER, `${elements.personaBannerPos.value}%`);
             document.documentElement.style.setProperty(CONSTANTS.CSS_VARS.CHARACTER_BANNER, `${elements.characterBannerPos.value}%`);
+            
+            // Apply name styling settings
+            document.documentElement.style.setProperty(CONSTANTS.CSS_VARS.NAME_VERTICAL_OFFSET, `${elements.nameVerticalOffset.value}px`);
+            document.documentElement.style.setProperty(CONSTANTS.CSS_VARS.HEADER_NAME_SIZE, `${elements.headerNameSize.value}rem`);
         },
 
         /**
@@ -829,6 +845,10 @@ jQuery(function () {
                 characterBannerPosInput: CONSTANTS.DOM.CHARACTER_BANNER_POS_INPUT,
                 bannerPosResetButton: CONSTANTS.DOM.BANNER_POS_RESET_BUTTON,
                 resetAllButton: CONSTANTS.DOM.RESET_ALL_BUTTON,
+                // Name styling elements
+                nameVerticalOffsetInput: CONSTANTS.DOM.NAME_VERTICAL_OFFSET_INPUT,
+                headerNameSizeInput: CONSTANTS.DOM.HEADER_NAME_SIZE_INPUT,
+                nameStylingResetButton: CONSTANTS.DOM.NAME_STYLING_RESET_BUTTON,
             };
 
             const elements = Utils.getElements(elementIds);
@@ -837,6 +857,7 @@ jQuery(function () {
             this.setupModeControls(elements);
             this.setupResetButtons(elements);
             this.setupInputListeners(elements);
+            this.setupNameStylingControls(elements);
             this.loadInitialState(elements);
         },
 
@@ -920,6 +941,37 @@ jQuery(function () {
             
             elements.characterBannerPosInput.addEventListener("input", 
                 Utils.createInputListener('characterBannerPos'));
+            
+            // Name styling input listeners
+            elements.nameVerticalOffsetInput.addEventListener("input", 
+                Utils.createInputListener('nameVerticalOffset'));
+            
+            elements.headerNameSizeInput.addEventListener("input", 
+                Utils.createInputListener('headerNameSize'));
+        },
+
+        /**
+         * Setup name styling controls
+         */
+        setupNameStylingControls(elements) {
+            // Reset button for name styling
+            elements.nameStylingResetButton.addEventListener("click", () => {
+                const settings = Utils.getSettings();
+                settings.nameVerticalOffset = DEFAULT_SETTINGS.nameVerticalOffset;
+                settings.headerNameSize = DEFAULT_SETTINGS.headerNameSize;
+                saveSettingsDebounced();
+                this.applyNameStyling(elements);
+                ThemeManager.updateStyles();
+            });
+        },
+
+        /**
+         * Apply name styling settings to UI
+         */
+        applyNameStyling(elements) {
+            const settings = Utils.getSettings();
+            elements.nameVerticalOffsetInput.value = settings.nameVerticalOffset ?? DEFAULT_SETTINGS.nameVerticalOffset;
+            elements.headerNameSizeInput.value = settings.headerNameSize ?? DEFAULT_SETTINGS.headerNameSize;
         },
 
         /**
@@ -957,6 +1009,7 @@ jQuery(function () {
             }
             this.applyMode(elements, savedMode);
             this.applyBannerPositions(elements);
+            this.applyNameStyling(elements);
             ThemeManager.updateStyles();
         },
 
@@ -1039,6 +1092,13 @@ jQuery(function () {
             elements.personaBannerPosInput.value = DEFAULT_SETTINGS.personaBannerPos;
             elements.characterBannerPosInput.value = DEFAULT_SETTINGS.characterBannerPos;
             this.applyBannerPositions(elements);
+            
+            // Set name styling inputs
+            if (elements.nameVerticalOffsetInput && elements.headerNameSizeInput) {
+                elements.nameVerticalOffsetInput.value = DEFAULT_SETTINGS.nameVerticalOffset;
+                elements.headerNameSizeInput.value = DEFAULT_SETTINGS.headerNameSize;
+                this.applyNameStyling(elements);
+            }
         }
     };
 

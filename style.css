@@ -32,7 +32,7 @@
 
     /* --- REFACTORED: Name & Timestamp Block Styling --- */
     --header-name-font: "Brillant", serif;
-    --header-name-size: 1.2rem;
+    --header-name-size: 1.0rem;
     --header-name-color: var(--SmartThemeBodyColor);
      /*--header-name-glow: 0 0 7px #FFFFE0; */
 
@@ -41,7 +41,7 @@
 
     /* ++ NEW: Controls for the NAME position ++ */
     /* Position of the name, relative to the top-left of the info block. */
-    --name-vertical-offset: -20px; /* Negative values move it up */
+    --name-vertical-offset: -10px; /* Negative values move it up */
     --name-horizontal-offset: -1px;
 
     /* ++ NEW: Controls for the TIMESTAMP position ++ */
