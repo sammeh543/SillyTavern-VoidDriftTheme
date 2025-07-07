@@ -80,6 +80,9 @@ body.voiddrift-theme #chat .mes {
     margin-top: 5px;
     overflow: visible;
 }
+body.voiddrift-theme #chat .mes input.del_checkbox { 
+    top: -100px;
+}
 
 body.voiddrift-theme #chat .last_mes .mesAvatarWrapper {
     padding-bottom: 0px;
