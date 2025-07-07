@@ -37,6 +37,7 @@ jQuery(function () {
             WHISPER_LIGHT_TOGGLE: 'voiddrift_whisper_light',
             THEME_SETTINGS_CONTAINER: 'voiddrift_theme_settings',
             LARGE_MODE_RADIO: 'voiddrift_large_avatar_mode',
+            MEDIUM_MODE_RADIO: 'voiddrift_medium_avatar_mode',
             SMALL_MODE_RADIO: 'voiddrift_small_avatar_mode',
             AVATAR_WIDTH_INPUT: 'voiddrift_avatar_width',
             EDIT_OFFSET_INPUT: 'voiddrift_edit_offset',
@@ -86,6 +87,11 @@ jQuery(function () {
         edit_right_offset_large: 25,
         reasoning_top_compensation_large: -90,
         reasoning_right_compensation_large: -40,
+        avatar_width_medium: 205,
+        edit_offset_medium: 225,
+        edit_right_offset_medium: 25,
+        reasoning_top_compensation_medium: -90,
+        reasoning_right_compensation_medium: -40,
         avatar_width_small: 75,
         edit_offset_small: 70,
         edit_right_offset_small: 25,
@@ -811,6 +817,7 @@ jQuery(function () {
         setupThemeSettings() {
             const elementIds = {
                 largeModeRadio: CONSTANTS.DOM.LARGE_MODE_RADIO,
+                mediumModeRadio: CONSTANTS.DOM.MEDIUM_MODE_RADIO,
                 smallModeRadio: CONSTANTS.DOM.SMALL_MODE_RADIO,
                 avatarWidthInput: CONSTANTS.DOM.AVATAR_WIDTH_INPUT,
                 editOffsetInput: CONSTANTS.DOM.EDIT_OFFSET_INPUT,
@@ -846,6 +853,9 @@ jQuery(function () {
 
             elements.largeModeRadio.addEventListener("change", () => 
                 elements.largeModeRadio.checked && handleModeChange("large"));
+            
+            elements.mediumModeRadio.addEventListener("change", () => 
+                elements.mediumModeRadio.checked && handleModeChange("medium"));
             
             elements.smallModeRadio.addEventListener("change", () => 
                 elements.smallModeRadio.checked && handleModeChange("small"));
@@ -940,6 +950,8 @@ jQuery(function () {
             const savedMode = Utils.getSettings().avatarMode;
             if (savedMode === "small") {
                 elements.smallModeRadio.checked = true;
+            } else if (savedMode === "medium") {
+                elements.mediumModeRadio.checked = true;
             } else {
                 elements.largeModeRadio.checked = true;
             }
@@ -1008,10 +1020,16 @@ jQuery(function () {
             // Set avatar mode radio buttons
             if (DEFAULT_SETTINGS.avatarMode === 'small') {
                 elements.smallModeRadio.checked = true;
+                elements.mediumModeRadio.checked = false;
+                elements.largeModeRadio.checked = false;
+            } else if (DEFAULT_SETTINGS.avatarMode === 'medium') {
+                elements.smallModeRadio.checked = false;
+                elements.mediumModeRadio.checked = true;
                 elements.largeModeRadio.checked = false;
             } else {
-                elements.largeModeRadio.checked = true;
                 elements.smallModeRadio.checked = false;
+                elements.mediumModeRadio.checked = false;
+                elements.largeModeRadio.checked = true;
             }
             
             // Apply mode-specific defaults

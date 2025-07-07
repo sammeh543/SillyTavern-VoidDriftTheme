@@ -35,14 +35,14 @@
     --header-name-font: "Brillant", serif;
     --header-name-size: 25px;
     --header-name-color: var(--SmartThemeBodyColor);
-    --header-name-glow: 0 0 7px #FFFFE0;
+     /*--header-name-glow: 0 0 7px #FFFFE0; */
 
     /* Top position for the ENTIRE info block container */
     --info-block-top-offset: 45px;
 
     /* ++ NEW: Controls for the NAME position ++ */
     /* Position of the name, relative to the top-left of the info block. */
-    --name-vertical-offset: -10px; /* Negative values move it up */
+    --name-vertical-offset: -20px; /* Negative values move it up */
     --name-horizontal-offset: -1px;
 
     /* ++ NEW: Controls for the TIMESTAMP position ++ */
